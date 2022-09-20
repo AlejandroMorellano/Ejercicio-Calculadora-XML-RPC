@@ -204,7 +204,6 @@ public class ClientRPC {
                          response = (String) client.execute("Methods.raiz", data6);
                         System.out.println("El resultado es: "+response);
                         r = "raiz";
-
                         break;
                     case 7:
                         new DaoCalculadora();
@@ -214,16 +213,16 @@ public class ClientRPC {
                         System.out.println("No existe la opción");
                 }
 
-                operations.setR(r);
-                operations.setFirstNumber(Double.parseDouble(firstNumber));
-                operations.setSecondNumber(Double.parseDouble(secondNumber));
-                operations.setResponse(response);
-                response = String.valueOf(Methods.guardar(operations));
-                System.out.println(response);
-                
             } else {
                 System.err.println("Opción incorrecta");
             }
+
+            operations.setR(r);
+            operations.setFirstNumber(Double.parseDouble(firstNumber));
+            operations.setSecondNumber(Double.parseDouble(secondNumber));
+            operations.setResponse(response);
+            response = String.valueOf(Methods.guardar(operations));
+            System.out.println(response);
 
         } while (!option.equals("8"));
     }
