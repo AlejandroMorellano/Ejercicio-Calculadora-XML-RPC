@@ -207,24 +207,24 @@ public class ClientRPC {
                         break;
                     case 7:
                         new DaoCalculadora();
-
                         break;
                     default:
                         System.out.println("No existe la opción");
                 }
 
+                operations.setR(r);
+                operations.setFirstNumber(Double.parseDouble(firstNumber));
+                operations.setSecondNumber(Double.parseDouble(secondNumber));
+                operations.setResponse(response);
+                response = String.valueOf(Methods.guardar(operations));
+                System.out.println(response);
+
             } else {
                 System.err.println("Opción incorrecta");
             }
 
-            operations.setR(r);
-            operations.setFirstNumber(Double.parseDouble(firstNumber));
-            operations.setSecondNumber(Double.parseDouble(secondNumber));
-            operations.setResponse(response);
-            response = String.valueOf(Methods.guardar(operations));
-            System.out.println(response);
-
         } while (!option.equals("8"));
+
     }
 
     public static boolean isNumber(String number) {
