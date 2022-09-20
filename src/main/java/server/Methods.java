@@ -1,14 +1,22 @@
 package server;
 
-import java.sql.Struct;
-
 public class Methods {
 
     double firstNumber;
     double secondNumber;
     String r;
 
+    String response;
+
     String opera;
+
+    public String getResponse() {
+        return response;
+    }
+
+    public void setResponse(String response) {
+        this.response = response;
+    }
 
     public String getOpera() {
         return opera;
@@ -86,4 +94,21 @@ public class Methods {
 
         return opera;
     }
+
+    public static boolean guardar(Methods operations){
+        DaoCalculadora daocal = new DaoCalculadora();
+        ResultAction result = new ResultAction();
+        if (daocal.insertarOperacion(operations)){
+            result.setResult(true);
+            result.setMessage("Operacion resgistrada correctamente");
+            result.setStatus(200);
+            return true;
+        }else {
+            result.setResult(false);
+            result.setMessage("Error al registrar operacion");
+            result.setStatus(400);
+            return false;
+        }
+    }
+
 }

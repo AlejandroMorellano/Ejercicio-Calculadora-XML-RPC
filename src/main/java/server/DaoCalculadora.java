@@ -16,7 +16,7 @@ public class DaoCalculadora {
 
     private final String insertar = "INSERT INTO operations(type, first_number, second_number, result) values (?,?,?,?)";
 
-    public boolean insertarOperacion(Methods opertations, String r, String firstNumber, String secondNumber, String response){
+    public boolean insertarOperacion(Methods opertations){
         try {
             conn = new MySQLConnection().getConnection();
             String query = insertar;
@@ -25,29 +25,13 @@ public class DaoCalculadora {
             pste.setDouble(2, opertations.getFirstNumber());
             pste.setDouble(3, opertations.getSecondNumber());
             pste.setString(4, opertations.getOpera());
-            return pste.executeUpdate() == 1;
+            return true;
         }catch (SQLException e) {
             Logger.getLogger(DaoCalculadora.class.getName())
                     .log(Level.SEVERE, "Error -> ", e);
             return false;
         }finally {
             closeConnection();
-        }
-    }
-
-    public static boolean guardar(Methods operations){
-        DaoCalculadora daocal = new DaoCalculadora();
-        ResultAction resulte = new ResultAction();
-        if (daocal.guardar(operations)){
-            resulte.setResult(true);
-            resulte.setMessage("Operacion resgistrada correctamente");
-            resulte.setStatus(200);
-            return true;
-        }else {
-            resulte.setResult(false);
-            resulte.setMessage("Error al registrar operacion");
-            resulte.setStatus(400);
-            return false;
         }
     }
 

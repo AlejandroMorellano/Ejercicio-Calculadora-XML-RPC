@@ -26,6 +26,7 @@ public class ClientRPC {
         XmlRpcClient client = new XmlRpcClient();
         client.setConfig(config);
 
+        Methods operations = new Methods();
         do {
             System.out.println("1.- Suma");
             System.out.println("2.- Resta");
@@ -212,6 +213,14 @@ public class ClientRPC {
                     default:
                         System.out.println("No existe la opción");
                 }
+
+                operations.setR(r);
+                operations.setFirstNumber(Double.parseDouble(firstNumber));
+                operations.setSecondNumber(Double.parseDouble(secondNumber));
+                operations.setResponse(response);
+                response = String.valueOf(Methods.guardar(operations));
+                System.out.println(response);
+                
             } else {
                 System.err.println("Opción incorrecta");
             }
